@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.make.planner.member.dao.MemberMapper">
+	<resultMap id="MemberResultMap" type="com.make.planner.member.model.Member" >
+		<id property="userIdx" column="USER_IDX"/>
+		<result property="userId" column="USER_ID"/>
+		<result property="userPwd" column="USER_PWD"/>
+		<result property="userName" column="USER_NAME"/>
+		<result property="email" column="EMAIL"/>
+		<result property="gender" column="GENDER"/>
+		<result property="age" column="AGE"/>
+		<result property="phone" column="PHONE"/>
+		<result property="address" column="ADDRESS"/>
+		<result property="status" column="STATUS"/>
+	</resultMap>
+	
+	<select id="findAllMember" resultType="com.make.planner.member.model.Member">
+		SELECT * 
+		FROM MEMBER
+	</select>
+	
+	<select id="findMemberById" resultType="com.make.planner.member.model.Member">
+		SELECT * 
+		FROM 
+			MEMBER
+		WHERE 
+			USER_ID = #{userId}
+	</select>
+	
+	<insert id="mergeMember" parameterType="com.make.planner.member.model.Member">
+		INSERT INTO MEMBER(
+			PHONE,
+			ADDRESS,
+			USER_ID,
+			GENDER,
+			USER_NAME,
+			EMAIL,
+			USER_PWD,
+			AGE
+		) VALUES(
+			#{phone},
+			#{address},
+			#{userId},
+			#{gender},
+			#{userName},
+			#{email},
+			#{userPwd},
+			#{age}
+		) 
+		ON DUPLICATE KEY UPDATE
+			PHONE = #{phone},
+			ADDRESS = #{address},
+			GENDER = #{gender},
+			USER_NAME = #{userName},
+			EMAIL = #{email},
+			USER_PWD = #{userPwd},
+			AGE = #{age}
+	</insert>
+</mapper>

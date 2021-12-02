@@ -1,0 +1,97 @@
+@font-face {
+    font-family: 'GowunBatang-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunBatang-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+nav, footer{
+    font-family: 'Patrick Hand', cursive;
+}
+
+/*login*/
+.loginWrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+}
+
+.loginForm{
+    position: absolute;
+    top: 37%;
+    vertical-align: middle;
+}
+
+.loginForm>h3{
+    font-family: 'Patrick Hand', cursive;
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+.loginForm>input{
+    border: 1px solid gray;
+    border-radius: 5px;
+    height: 27px;
+    width: 250px;
+    margin-top: 5px;
+}
+
+.loginForm>button{
+    font-family: 'Patrick Hand', cursive;
+    font-size: 15px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    height: 30px;
+    width: 256px;
+    margin-top: 5px;
+}
+
+.loginForm>button:hover,
+.loginForm>button:active{
+    background-color: gray;
+    color: white;
+}
+
+.join{
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Patrick Hand', cursive;
+    margin: 5px;
+    font-size: 12px;
+}
+
+/*main*/
+.mainContainer{
+    width: 100vw;
+    height: 85vh;
+}
+.mainRow{
+    height: 49%;
+    width: 99%;
+    margin: 15px 15px 5px 5px;
+}
+.mainRow > div {
+    font-family: 'GowunBatang-Regular';
+    border-radius: 10px;
+    background-color: rgb(248, 248, 248);
+    display: inline-block;
+    width: 49%;
+    height: 100%;
+    margin: 5px;
+    padding: 15px;
+}
+
+.divTitle{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.diaryTh{
+    width: 100px;
+}

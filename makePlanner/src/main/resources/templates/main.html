@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="fullcalendar/main.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js.map"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+    <title>make your plan :)</title>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand mainNav" href="#">Check your plan!</a>
+    </nav>
+
+    <div class="mainContainer">
+        <div class="mainRow">
+            <div class="mainDiv">
+                <span class="divTitle">일기장</span>
+                <table class="table" style="margin-top: 20px;">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="diaryTh">DAY</th>
+                        <th scope="col">Title</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">11/30</th>
+                        <td>오늘은 아주 행복bbbbbbbbbbbbbbbbbbbbbbb</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">11/29</th>
+                        <td>그 전날도 행복!!!!!</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">11/28</th>
+                        <td>전전날도 행복했..?</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+            <div class="mainDiv">
+                <span class="divTitle">일정</span>
+                <div id='calendar' style="width:1180px; margin-left:auto; margin-right:auto;"></div>
+            </div>
+        </div>
+        <div class="mainRow">
+            <div class="mainDiv">
+                <span class="divTitle">진행상황
+            </div>
+            <div class="mainDiv">
+                <span class="divTitle">이번달 목표
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="footer py-3">
+    <div class="container">
+        <span class="text-muted">Copyright © 2021 jangmi.</span>
+    </div>
+    </footer>
+
+</body>
+</html>
