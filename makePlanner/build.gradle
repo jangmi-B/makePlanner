@@ -20,14 +20,51 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	
+	// 시큐리티
+	// implementation 'org.springframework.boot:spring-boot-starter-security'
+	// implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'	
+	
+	// 마이바티스
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
+	// JSON
+	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+	implementation 'com.google.code.gson:gson:2.8.7'
+	
+	// 썸네일
+	implementation 'com.mortennobel:java-image-scaling:0.8.6'
+	implementation 'org.kurento:kms-api-filters:6.16.0'
+	
+	// 이미지 메타정보
+	implementation 'com.drewnoakes:metadata-extractor:2.16.0'
+	implementation 'com.adobe.xmp:xmpcore:6.1.11'
+	
+	// XSS 필터
+	implementation 'com.navercorp.lucy:lucy-xss-servlet:2.0.1'
+	
+	// 암호화
+	//implementation 'org.jasypt:jasypt-spring4:1.9.3'
+
+	// POI엑셀
+	//implementation 'org.apache.poi:poi:4.1.2'
+	//implementation 'org.apache.poi:poi-ooxml:4.1.2'
+	//implementation 'org.apache.poi:poi-ooxml-schemas:4.1.2'
+	// log4jdbc
+	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+	// JSP
+	//implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	// JSTL
+	//implementation 'javax.servlet:jstl:1.2'
+	// MySQL
+	runtimeOnly 'mysql:mysql-connector-java:8.0.26'
+	
 }
 
 test {

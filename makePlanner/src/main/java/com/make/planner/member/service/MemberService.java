@@ -9,7 +9,7 @@ import com.make.planner.member.dao.MemberMapper;
 import com.make.planner.member.model.Member;
 
 @Service
-public class MemberService {
+public class MemberService{
 	
 	@Autowired
 	MemberMapper memberMapper;
@@ -25,5 +25,5 @@ public class MemberService {
 	public void mergeMember(Member member) {
 		memberMapper.mergeMember(member);
 	}
-
+	
 }
