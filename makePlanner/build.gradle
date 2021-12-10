@@ -29,8 +29,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	
 	// 시큐리티
-	// implementation 'org.springframework.boot:spring-boot-starter-security'
-	// implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'	
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'	
 	
 	// 마이바티스
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
@@ -61,7 +61,7 @@ dependencies {
 	// JSP
 	//implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	// JSTL
-	//implementation 'javax.servlet:jstl:1.2'
+	// implementation 'javax.servlet:jstl:1.2'
 	// MySQL
 	runtimeOnly 'mysql:mysql-connector-java:8.0.26'
 	

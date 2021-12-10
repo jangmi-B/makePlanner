@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+    <script src="/js/jquery/jquery.min.js"></script>
+    <title>Hello! Join Us!!</title>
+</head>
+
+<body onload="document.f.username.focus();">
+	<form name="f" action="/login" method="post">
+    	<div class="loginWrap">
+	        <div class="loginForm">
+	            <h3>hello?! stranger!</h3>
+	            <input type="text" name="username" placeholder="Hello? Enter your ID"><br>
+	            <input type="password" name="password" placeholder="Enter your Password"><br>
+	            <button type="submit">GO!!!</button>
+	            <div class="join">
+	                <span><a href="#">join Us</a></span>
+	                <span class="forgotId"><a href="#">Forgot ID / PW</a></span>
+	            </div>
+	            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+	        </div>
+	        <div class="error" 
+			     th:if="${param.login_error}"
+			     th:with="errorMsg=${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">
+				  Your login attempt was not successful, try again.<br />
+				  Reason: <span th:text="${errorMsg}">Wrong input!</span> 
+				  <th:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session"/>
+			</div>
+    	</div>
+	</form>
+</body>
+</html>

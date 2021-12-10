@@ -3,15 +3,15 @@
 <mapper namespace="com.make.planner.member.dao.MemberMapper">
 	<resultMap id="MemberResultMap" type="com.make.planner.member.model.Member" >
 		<id property="userIdx" column="USER_IDX"/>
-		<result property="userId" column="USER_ID"/>
-		<result property="userPwd" column="USER_PWD"/>
-		<result property="userName" column="USER_NAME"/>
-		<result property="email" column="EMAIL"/>
-		<result property="gender" column="GENDER"/>
-		<result property="age" column="AGE"/>
-		<result property="phone" column="PHONE"/>
-		<result property="address" column="ADDRESS"/>
-		<result property="status" column="STATUS"/>
+        <result property="userId" column="USER_ID"/>
+        <result property="userPwd" column="USER_PWD"/>
+        <result property="userName" column="USER_NAME"/>
+        <result property="email" column="EMAIL"/>
+        <result property="gender" column="GENDER"/>
+        <result property="age" column="AGE"/>
+        <result property="phone" column="PHONE"/>
+        <result property="address" column="ADDRESS"/>
+        <result property="status" column="STATUS"/>
 	</resultMap>
 	
 	<select id="findAllMember" resultType="com.make.planner.member.model.Member">
