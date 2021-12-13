@@ -19,6 +19,12 @@ repositories {
 	mavenCentral()
 }
 
+// https://logging.apache.org/log4j/2.x/security.html
+ext['log4j2.version'] = '2.15.0'
+
+// https://tomcat.apache.org/security-9.html
+ext['tomcat.version'] = '9.0.56' 
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
