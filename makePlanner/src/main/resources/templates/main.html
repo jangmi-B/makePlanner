@@ -24,7 +24,7 @@
 <body>
     <nav class="navbar navbar-dark bg-dark"  style="width:100%;">
         <a class="navbar-brand mainNav" href="javascript:;">
-        	Hey <span sec:authentication="name"></span>, Check your plan! 
+        	Hey <span sec:authentication="principal.name"></span>, Check your plan! 
         </a>
         <a sec:authorize="isAuthenticated()" th:href="@{/logout}" style="color:white; font-size:20px;">LOGOUT</a>
     </nav>

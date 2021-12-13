@@ -66,6 +66,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and() // 로그인 설정
                 .formLogin()
                 .loginPage("/")
+                .usernameParameter("userId")
+                .passwordParameter("userPwd")
                 .loginProcessingUrl("/login")
                 .defaultSuccessUrl("/hello")
                 .failureUrl("/?error") 
@@ -95,7 +97,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
                 // 403 예외처리 핸들링
                 .exceptionHandling()
-                .accessDeniedPage("/denied");
+                .accessDeniedPage("/error");
     }
 	
 //    @Override

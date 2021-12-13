@@ -5,7 +5,7 @@
 		<id property="userIdx" column="USER_IDX"/>
         <result property="userId" column="USER_ID"/>
         <result property="userPwd" column="USER_PWD"/>
-        <result property="userName" column="USER_NAME"/>
+        <result property="name" column="NAME"/>
         <result property="email" column="EMAIL"/>
         <result property="gender" column="GENDER"/>
         <result property="age" column="AGE"/>
@@ -33,7 +33,7 @@
 			ADDRESS,
 			USER_ID,
 			GENDER,
-			USER_NAME,
+			NAME,
 			EMAIL,
 			USER_PWD,
 			AGE
@@ -42,7 +42,7 @@
 			#{address},
 			#{userId},
 			#{gender},
-			#{userName},
+			#{name},
 			#{email},
 			#{userPwd},
 			#{age}
@@ -51,7 +51,7 @@
 			PHONE = #{phone},
 			ADDRESS = #{address},
 			GENDER = #{gender},
-			USER_NAME = #{userName},
+			NAME = #{name},
 			EMAIL = #{email},
 			USER_PWD = #{userPwd},
 			AGE = #{age}
