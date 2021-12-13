@@ -12,11 +12,12 @@
     <title>Hello! Join Us!!</title>
 </head>
 
+<!-- https://to-dy.tistory.com/81 -->
 <body onload="document.f.username.focus();">
 	<form name="f" action="/login" method="post">
     	<div class="loginWrap">
 	        <div class="loginForm">
-	            <h3>hello?! stranger!</h3>
+	            <h3><a href="/">hello?! stranger!</a></h3>
 	            <input type="text" name="username" placeholder="Hello? Enter your ID"><br>
 	            <input type="password" name="password" placeholder="Enter your Password"><br>
 	            <button type="submit">GO!!!</button>
@@ -25,14 +26,14 @@
 	                <span class="forgotId"><a href="#">Forgot ID / PW</a></span>
 	            </div>
 	            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		        <div style="font-size:11px; color:blue; margin-top:10px;" class="error" 
+				     th:if="${param.error}"
+				     th:with="errorMsg=${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">
+					  Your login attempt was not successful, try again.<br />
+					  Reason: <span th:text="${errorMsg}">Wrong input!</span> 
+					  <th:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session"/>
+				</div>
 	        </div>
-	        <div class="error" 
-			     th:if="${param.login_error}"
-			     th:with="errorMsg=${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">
-				  Your login attempt was not successful, try again.<br />
-				  Reason: <span th:text="${errorMsg}">Wrong input!</span> 
-				  <th:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session"/>
-			</div>
     	</div>
 	</form>
 </body>

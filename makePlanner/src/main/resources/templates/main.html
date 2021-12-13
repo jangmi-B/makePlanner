@@ -8,10 +8,13 @@
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
     
+    <script src="/js/jquery/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script src="fullcalendar/main.js"></script>
     <script src="bootstrap/js/bootstrap.js"></script>
     <script src="bootstrap/js/bootstrap.min.js.map"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,9 +22,16 @@
     <title>make your plan :)</title>
 </head>
 <body>
-    <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand mainNav" href="#">Hey <span sec:authentication="name"></span>, Check your plan!</a>
+    <nav class="navbar navbar-dark bg-dark"  style="width:100%;">
+        <a class="navbar-brand mainNav" href="javascript:;">
+        	Hey <span sec:authentication="name"></span>, Check your plan! 
+        </a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/logout}" style="color:white; font-size:20px;">LOGOUT</a>
     </nav>
+    
+    <form id="logout" action="/logout" method="POST">
+	   <input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+	</form>
 
     <div class="mainContainer">
         <div class="mainRow">
@@ -72,5 +82,31 @@
     </div>
     </footer>
 
+
+	<script>
+	//seetAlert : https://wooncloud.tistory.com/12
+		$(document).ready(function() {
+			$("#logoutBtn").on("click",function(){
+				$("form").submit();
+			})
+		});
+	
+		function logout(){
+			Swal.fire({
+			  title: 'Do you really want to logout?',
+			  icon: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#034f84',
+			  cancelButtonColor: '#9896a4',
+			  confirmButtonText: 'Yes, please',
+			  cancelButtonText: 'No! sorry'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					console.log($("#logout"));
+					$("form").submit();
+				}
+			})
+		}
+	</script>
 </body>
 </html>
