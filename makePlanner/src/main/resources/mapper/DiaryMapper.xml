@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.make.planner.module.diary.dao.DiaryMapper">
+
+	<resultMap id="DiaryResultMap" type="com.make.planner.module.diary.model.Diary" >
+		<id property="diaryIdx" column="DIARY_IDX"/>
+        <result property="writeDt" column="WRITE_DT"/>
+        <result property="updateDt" column="UPDATE_DT"/>
+        <result property="title" column="TITLE"/>
+        <result property="contents" column="CONTENTS"/>
+        <result property="writer" column="WRITER"/>
+        <result property="status" column="STATUS"/>
+	</resultMap>
+	
+	<select id="selectDiaryList" resultMap="DiaryResultMap">
+		SELECT 
+			D.DIARY_IDX
+			, DATE_FORMAT(D.WRITE_DT, '%Y년 %m월 %d일') AS WRITE_DT
+			, D.UPDATE_DT 
+			, D.TITLE 
+			, D.CONTENTS 
+			, D.WRITER
+			, D.STATUS 
+		FROM DIARY D
+		WHERE D.WRITER = #{userId}
+	</select>
+</mapper>

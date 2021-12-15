@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,7 +36,7 @@
     <div class="mainContainer">
         <div class="mainRow">
             <div class="mainDiv">
-                <span class="divTitle">일기장</span>
+                <span class="divTitle">일기장(기본게시판)</span><button class="main_btn"> + View detail</button>
                 <table class="table" style="margin-top: 20px;">
                     <thead>
                       <tr>
@@ -45,36 +45,27 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">11/30</th>
-                        <td>오늘은 아주 행복bbbbbbbbbbbbbbbbbbbbbbb</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">11/29</th>
-                        <td>그 전날도 행복!!!!!</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">11/28</th>
-                        <td>전전날도 행복했..?</td>
+                      <tr th:each="diary:${diaryList}">
+                        <th scope="row" th:text="${diary.writeDt}"></th>
+                        <td><a href="#" class="main_link" th:text="${diary.title}"></a></td>
                       </tr>
                     </tbody>
                   </table>
             </div>
             <div class="mainDiv">
-                <span class="divTitle">일정</span>
+                <span class="divTitle">일정(fullcalendar 사용해보기)</span>
                 <div id='calendar' style="width:1180px; margin-left:auto; margin-right:auto;"></div>
             </div>
         </div>
         <div class="mainRow">
             <div class="mainDiv">
-                <span class="divTitle">진행상황
+                <span class="divTitle">진행상황(차트 사용해보기)</span>
             </div>
             <div class="mainDiv">
-                <span class="divTitle">이번달 목표
+                <span class="divTitle">이번달 목표(체크리스트 만들어보기)</span>
             </div>
         </div>
     </div>
-
 
     <footer class="footer py-3">
     <div class="container">

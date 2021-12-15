@@ -1,4 +1,4 @@
-package com.make.planner.member.web;
+package com.make.planner.module.member.web;
 
 import java.util.List;
 
@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.make.planner.member.model.Member;
-import com.make.planner.member.service.MemberService;
+import com.make.planner.module.member.model.Member;
+import com.make.planner.module.member.service.MemberService;
+
 
 
 @Controller

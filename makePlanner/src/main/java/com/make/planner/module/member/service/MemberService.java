@@ -1,4 +1,4 @@
-package com.make.planner.member.service;
+package com.make.planner.module.member.service;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.make.planner.member.dao.MemberMapper;
-import com.make.planner.member.model.Member;
+import com.make.planner.module.member.dao.MemberMapper;
+import com.make.planner.module.member.model.Member;
 
 import lombok.extern.slf4j.Slf4j;
 

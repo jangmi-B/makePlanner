@@ -21,10 +21,16 @@ import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import com.make.planner.member.service.MemberService;
+import com.make.planner.module.member.service.MemberService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+/*
+ * jwt토큰이용
+ * https://emgc.tistory.com/133
+ * https://wildeveloperetrain.tistory.com/57
+ *
+ */
 
 @Slf4j
 @Configuration

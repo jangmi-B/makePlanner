@@ -7,8 +7,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 
-import com.make.planner.member.model.Member;
-import com.make.planner.member.service.MemberService;
+import com.make.planner.module.member.model.Member;
+import com.make.planner.module.member.service.MemberService;
+
 
 public class CustomAuthenticationProvider implements AuthenticationProvider{
 	

@@ -1,4 +1,4 @@
-package com.make.planner.member.model;
+package com.make.planner.module.member.model;
 
 import java.util.Collection;
 
@@ -33,7 +33,7 @@ public class Member implements UserDetails{
 	private String address;
 	
 	private String status;
-
+	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
