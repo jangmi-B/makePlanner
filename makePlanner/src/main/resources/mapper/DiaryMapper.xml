@@ -13,6 +13,7 @@
 	</resultMap>
 	
 	<select id="selectDiaryList" resultMap="DiaryResultMap">
+		/* DiaryMapper.selectDiaryList*/
 		SELECT 
 			D.DIARY_IDX
 			, DATE_FORMAT(D.WRITE_DT, '%Y년 %m월 %d일') AS WRITE_DT

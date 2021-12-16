@@ -16,6 +16,7 @@
 	</resultMap>
 	
 	<select id="findId" resultType="com.make.planner.module.member.model.Member">
+		/* MemberMapper.findId */
 		SELECT 
 			USER_ID
 		FROM MEMBER
@@ -24,6 +25,7 @@
 	</select>
 	
 	<select id="findMemberById" resultType="com.make.planner.module.member.model.Member">
+		/* MemberMapper.findMemberById */
 		SELECT *
 		FROM 
 			MEMBER
@@ -32,6 +34,7 @@
 	</select>
 	
 	<insert id="mergeMember" parameterType="com.make.planner.module.member.model.Member">
+		/* MemberMapper.mergeMember */
 		INSERT INTO MEMBER(
 			USER_ID
 			, USER_PWD
