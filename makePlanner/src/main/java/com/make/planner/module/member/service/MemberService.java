@@ -27,19 +27,9 @@ public class MemberService implements UserDetailsService {
 		return memberMapper.findId(userId);
 	}
 	
-	public void mergeMember(Member member) {
-		memberMapper.mergeMember(member);
+	public long mergeMember(Member member) {
+		return memberMapper.mergeMember(member);
 	}
-	
-//	@Transactional
-//    public Long joinUser(Member member) {
-//		// 비밀번호 암호화
-//		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//		member.setUserPwd(passwordEncoder.encode(member.getUserPwd()));
-//		
-//		return memberMapper.save(member.toEntity()).getId();
-//    }
-	
 	
 	// https://taesan94.tistory.com/109?category=375242
 	// https://to-dy.tistory.com/86?category=720806

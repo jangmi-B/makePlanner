@@ -40,7 +40,7 @@
 }
 .form-wrap {
     width: 380px;
-    height: 700px;
+    height: 710px;
     position: relative;
     margin: 6% auto;
     background: rgb(245, 244, 244);
@@ -87,6 +87,10 @@
     outline: none;
     background: transparent;
 }
+.input_blank{
+	border-bottom: 1px solid blue;
+}
+
 .input_alert{
     width: 100%;
     margin: 5px 0;

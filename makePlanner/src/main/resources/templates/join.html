@@ -31,8 +31,10 @@
                 <input type="text" class="input-field" name="userId" placeholder="Make User ID" style="width:75%">
                 <button type="button" class="check_btn idCheck">ID check</button>
                 <input type="text" class="input_alert id_check" style="display:none;" value="">
+                <input type="hidden" class="input_alert id_confirm" value="false">
                 <input type="password" id="firstPwd" class="input-field" name="userPwd" placeholder="Make User PWD">
                 <input type="password" id="checkPwd" class="input-field" placeholder="Check User PWD">
+                <input type="text" class="input_alert pwd_confirm" style="display:none;" value="false">
                 <input type="text" class="input_alert pwd_chk" style="display:none;" value="** Dosen't match passoword :(">
                 <input type="email" class="input-field" name="email" placeholder="Enter Your Email">
                 <input type="tel" class="input-field" name="phone" placeholder="Enter your Phone number">
@@ -45,20 +47,8 @@
     <script>
     	// 템플릿
         // https://bizmark.co.kr/wordpress/free-template/%EB%AC%B4%EB%A3%8C-%ED%85%9C%ED%94%8C%EB%A6%BF-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%ED%8F%BC%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%ED%8F%BC/
-        // 암호화
-        // https://hyune-c.tistory.com/entry/%ED%9A%8C%EC%9B%90-%EA%B0%80%EC%9E%85%EC%9D%84-%ED%95%B4%EB%B3%B4%EC%9E%90-%EC%95%94%ED%98%B8%ED%99%94%EC%97%90%EC%84%9C-spring-security-%EA%B9%8C%EC%A7%80
         
-        $("#checkPwd").keyup(function(){
-        	var firstPwd = $("#firstPwd").val();
-        	var checkPwd =$("#checkPwd").val();
-        	
-        	if(firstPwd !== checkPwd){
-        		$(".pwd_chk").attr("style","display:block");
-        	} else{
-        		$(".pwd_chk").attr("style","display:none");
-        	}
-        });
-        
+       // 아이디 중복체크
        $(".idCheck").on("click",function(){
     		var userId = $("input[name=userId]").val();
     		var token = $("meta[name='_csrf']").attr("content"); 
@@ -75,9 +65,10 @@
 	    				userId : userId
 	    			},
 	    			success : function(response) {
-	    				if(response.result == true){
+	    				if(response.result == "true"){
 	    					$(".id_check").attr("style", "display:block;");
 	    					$(".id_check").val(response.msg);
+	    					$(".id_confirm").val(response.result);
 	    				} else{
 	    					$(".id_check").attr("style", "display:block;");
 	    					$(".id_check").val(response.msg);
@@ -92,35 +83,91 @@
     			$(".id_check").val("Make ID please :(");
     		}
     	});
+    			
+    	// 비밀번호 확인
+        $("#checkPwd").keyup(function(){
+        	var firstPwd = $("#firstPwd").val();
+        	var checkPwd =$("#checkPwd").val();
+        	
+        	if(firstPwd !== checkPwd){
+        		$(".pwd_chk").attr("style","display:block");
+        		$(".pwd_confirm").val("false");
+        	} else{
+        		$(".pwd_chk").attr("style","display:none");
+        		$(".pwd_confirm").val("true");
+        	}
+        });
         
-
+		// 회원가입
     	$(".submit_btn").on("click",function(){
     		var form = $("#register").serialize();
         	var token = $("meta[name='_csrf']").attr("content"); 
         	var header = $("meta[name='_csrf_header']").attr("content");
-
-        	$.ajax({
-        		beforeSend: function(xhr){ 
-        			xhr.setRequestHeader(header,token); 
-        		},
-        		type : "POST",
-    			url : "/joinProc",
-    			data : form,
-    			success : function(response) {
-    				Swal.fire({
-    					  title: response.msg,
-   					}).then((result) => {
-   						$(".loadingImg").attr("style","display:block;");
-   						
-   						setTimeout(function() {
-  	  						location.replace("/");
-   						}, 600);
-    				});
-    			},
-    			error : function(error){
-    				alert("문제가 발생했습니다. 관리자에게 문의하세요");
-    			}
-        	});
+        	var invalidCnt = 0;
+        	
+        	if($("input[name=name]").val() == ''){
+        		$("input[name=name]").addClass("input_blank");
+        		invalidCnt++;
+        	} else {
+        		$("input[name=name]").removeClass("input_blank");
+        	}
+        	
+        	if($(".id_confirm").val() == "false"){
+        		$("input[name=userId]").addClass("input_blank");
+        		invalidCnt++;
+        	} else {
+        		$("input[name=userId]").removeClass("input_blank");
+        	}
+        	
+        	if($(".pwd_confirm").val() == "false" || $("input[name=userPwd]").val() == ''){
+        		$("input[name=userPwd]").addClass("input_blank");
+        		$("#checkPwd").addClass("input_blank");
+        		invalidCnt++;
+        	} else if($(".pwd_confirm").val() == "true" || $("input[name=userPwd]").val() != '') {
+        		$("input[name=userPwd]").removeClass("input_blank");
+        		$("#checkPwd").removeClass("input_blank");
+        	}
+			
+        	if(invalidCnt > 0){
+        		return false;
+        	}
+        	
+        	Swal.fire({
+        		  title: 'Do you really want? :)',
+        		  icon: 'question',
+        		  showCancelButton: true,
+        		  confirmButtonColor: '#DAA520',
+        		  cancelButtonColor: '#808080',
+        		  confirmButtonText: 'Yes, Please :)'
+        		}).then((result) => {
+        		  if (result.isConfirmed) {
+        			  $.ajax({
+                  		beforeSend: function(xhr){ 
+                  			xhr.setRequestHeader(header,token); 
+                  		},
+                  		type : "POST",
+              			url : "/joinProc",
+              			data : form,
+              			success : function(response) {
+              				Swal.fire({
+              					  icon: 'success',
+              					  title: response.msg,
+             					}).then((result) => {
+             						$(".loadingImg").attr("style","display:block;");
+             						
+             						setTimeout(function() {
+            	  						location.replace("/");
+             						}, 600);
+              				});
+              			},
+              			error : function(error){
+              				alert("문제가 발생했습니다. 관리자에게 문의하세요");
+              			}
+                  	});
+        		  } else {
+        			  return false;
+        		  }
+        	}); 
     	});
     </script>
 </body>

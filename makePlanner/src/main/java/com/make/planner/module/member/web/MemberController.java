@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,11 +30,20 @@ public class MemberController {
 	@ResponseBody
 	@PostMapping("/joinProc")
 	public Map<String, String> joinProc(Member member) {
-		System.out.println("join_member >>>" + member);
-		
+		BCryptPasswordEncoder pwdEncoder = new BCryptPasswordEncoder();
 		Map<String, String> map = new HashMap<>();
-		map.put("result", "true");
-		map.put("msg", member.getName() + "님 반갑습니다 :) <br> 회원가입이 완료되었습니다.");
+		
+		member.setUserPwd(pwdEncoder.encode(member.getUserPwd()));;
+		
+		Long mergeMember = memberService.mergeMember(member);
+		System.out.println(mergeMember);
+		if(mergeMember > 0) {
+			map.put("result", "true");
+			map.put("msg", member.getName() + "님 반갑습니다 :) <br> 회원가입이 완료되었습니다.");
+		} else {
+			map.put("result", "false");
+			map.put("msg", "오류가 발생했습니다. 확인이 필요합니다.");
+		}
 		
 		return map;
 	} 

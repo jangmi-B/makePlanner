@@ -13,6 +13,6 @@ public interface MemberMapper {
 	
 	public Member findMemberById(String userId);
 	
-	public void mergeMember(Member member);
+	public long mergeMember(Member member);
 
 }

@@ -33,31 +33,25 @@
 	
 	<insert id="mergeMember" parameterType="com.make.planner.module.member.model.Member">
 		INSERT INTO MEMBER(
-			PHONE,
-			ADDRESS,
-			USER_ID,
-			GENDER,
-			NAME,
-			EMAIL,
-			USER_PWD,
-			AGE
+			USER_ID
+			, USER_PWD
+			, NAME
+			, EMAIL
+			, PHONE
+			, ADDRESS
 		) VALUES(
-			#{phone},
-			#{address},
-			#{userId},
-			#{gender},
-			#{name},
-			#{email},
-			#{userPwd},
-			#{age}
+			#{userId}
+			, #{userPwd}
+			, #{name}
+			, #{email}
+			, #{phone}
+			, #{address}
 		) 
 		ON DUPLICATE KEY UPDATE
-			PHONE = #{phone},
-			ADDRESS = #{address},
-			GENDER = #{gender},
-			NAME = #{name},
-			EMAIL = #{email},
-			USER_PWD = #{userPwd},
-			AGE = #{age}
+			USER_PWD = #{userPwd}
+			, NAME = #{name}
+			, EMAIL = #{email}
+			, PHONE = #{phone}
+			, ADDRESS = #{address}
 	</insert>
 </mapper>
