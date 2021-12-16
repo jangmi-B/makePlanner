@@ -23,12 +23,8 @@ public class MemberService implements UserDetailsService {
 	@Autowired
 	MemberMapper memberMapper;
 	
-	public List<Member> findAllMember(){
-		return memberMapper.findAllMember();
-	}
-	
-	public Member findMemberById(String userId) {
-		return memberMapper.findMemberById(userId);
+	public Member findId(String userId) {
+		return memberMapper.findId(userId);
 	}
 	
 	public void mergeMember(Member member) {

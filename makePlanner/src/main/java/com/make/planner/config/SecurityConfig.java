@@ -68,7 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             	// csrf설정 (https://badstorage.tistory.com/32) post 에러 제거하기위해 / 이유는 스프링시큐리티가 적용되면 모든 POST방식에서는 csrf토큰이 필요했다.
     			.csrf()
-    			.ignoringAntMatchers("/login")
+    			.ignoringAntMatchers("/login", "/joinProc")
             .and() // 로그인 설정
                 .formLogin()
                 .loginPage("/")

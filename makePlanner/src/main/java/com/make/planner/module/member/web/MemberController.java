@@ -1,14 +1,15 @@
 package com.make.planner.module.member.web;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.make.planner.module.member.model.Member;
 import com.make.planner.module.member.service.MemberService;
@@ -20,41 +21,40 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 	
-	@GetMapping("/member/findAllMember")
-	public String findAllMember(ModelMap map){
-		List<Member> member = memberService.findAllMember();
-		
-		map.addAttribute(member);
-		
-		return "/test/memberTest";
+	@GetMapping("/joinUs")
+	public String joinUs() {
+		return "/join";
 	}
 	
-	@GetMapping("/fullcalendar")
-	public String calendar() {
-		return "/test/fullcalendar";
-	}
-	
-	@PostMapping("/memeber/insertMember")
-	public String insertMember(@RequestBody Member member) {
-		Member findMember = memberService.findMemberById(member.getUserId());
+	@ResponseBody
+	@PostMapping("/joinProc")
+	public Map<String, String> joinProc(Member member) {
+		System.out.println("join_member >>>" + member);
 		
-		if(findMember == null) {
-			memberService.mergeMember(member);
-			return "등록완료";
-		} else {
-			return "아이디중복";
-		}
-	}
+		Map<String, String> map = new HashMap<>();
+		map.put("result", "true");
+		map.put("msg", member.getName() + "님 반갑습니다 :) <br> 회원가입이 완료되었습니다.");
+		
+		return map;
+	} 
 	
-	@PostMapping("/member/updateMember")
-	public String updateMember(@PathVariable String userId, @RequestBody Member member) {
-		Member findMember = memberService.findMemberById(userId);
+	@ResponseBody
+	@PostMapping("/idCheck")
+	public Map<String, String> idCheck(Member member) {
+		
+		Map<String, String> map = new HashMap<>();
+		
+		Member findMember = memberService.findId(member.getUserId());
 		
 		if(findMember != null) {
-			memberService.mergeMember(member);
-			return "수정완료";
+			map.put("result", "false");
+			map.put("msg", "** This ID is already occupied :(");
 		} else {
-			return "수정실패";
-		}
-	}
+			map.put("result", "true");
+			map.put("msg", "** You can use the ID :)");
+		};
+		
+		return map;
+	} 
+	
 }

@@ -13,7 +13,7 @@
 </head>
 
 <!-- https://to-dy.tistory.com/81 -->
-<body onload="document.f.username.focus();">
+<body onload="document.f.userId.focus();">
 	<form name="f" action="/login" method="post">
     	<div class="loginWrap">
 	        <div class="loginForm">
@@ -22,7 +22,7 @@
 	            <input type="password" name="userPwd" placeholder="Enter your Password"><br>
 	            <button type="submit">GO!!!</button>
 	            <div class="join">
-	                <span><a href="#">join Us</a></span>
+	                <span><a href="/joinUs">join Us</a></span>
 	                <span class="forgotId"><a href="#">Forgot ID / PW</a></span>
 	            </div>
 	            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

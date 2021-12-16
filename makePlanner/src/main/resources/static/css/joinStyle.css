@@ -1,0 +1,142 @@
+@font-face {
+    font-family: 'GowunBatang-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunBatang-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.swal2-title {
+  font-family: 'GowunBatang-Regular';
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+.loadingImg{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background: #000000;
+	opacity :0.3;
+	z-index:9500;
+	display:none;
+}
+.loadingImg img{
+	left: 50%;
+	top: 45%;
+	position: absolute;
+	text-align:center;
+	display:block;
+}
+.wrap {
+    height: 100%;
+    width: 100%;
+    /* background-image: url(img/background.jpg); */
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+}
+.form-wrap {
+    width: 380px;
+    height: 700px;
+    position: relative;
+    margin: 6% auto;
+    background: rgb(245, 244, 244);
+    padding: 5px;
+    overflow: hidden;
+    border-radius: 3px;
+    margin-top: 100px;
+}
+.button-wrap {
+    width: 230px;
+    margin: 35px auto;
+    position: relative;
+    box-shadow: 0 0 600px 9px #fcae8f;
+    border-radius: 30px;
+}
+.togglebtn {
+    padding: 10px 30px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline: none;
+    position: relative;
+}
+.social-icons {
+    margin: 30px auto;
+    text-align: center;
+}
+.social-icons img {
+    width: 30px ;
+    cursor: pointer;
+}
+.input-group {
+    top: 180px;
+    position: absolute;
+    width: 280px;
+    transition: .5s;
+}
+.input-field {
+    width: 100%;
+    padding: 10px 0;
+    margin: 5px 0;
+    border: none;
+    border-bottom: 1px solid #999;
+    outline: none;
+    background: transparent;
+}
+.input_alert{
+    width: 100%;
+    margin: 5px 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    color:blue;
+    font-size: 15px;
+    font-family: 'Patrick Hand', cursive;
+}
+.submit_btn {
+    width: 85%;
+    padding: 10px 30px;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    background: linear-gradient(to right, #242424, #868686);
+    border: 0;
+    outline: none;
+    border-radius: 30px;
+    color:white;
+    font-weight: 600;
+}
+.checkbox {
+    margin: 30px 10px 30px 0;
+}
+span {
+    color: #777;
+    font-size: 12px;
+    bottom: 68px;
+    position: absolute;
+}
+#register {
+    left: 50px;
+} 
+.join_top{
+    margin-top: 50px;
+    margin-left: 50px;
+}
+.join_title{
+    font-family: 'Patrick Hand', cursive;
+}
+.check_btn{
+	width:60px;
+	height:35px;
+	background: gray;
+	color: white;
+	border: none;
+	border-radius:2px;
+}
+.check_btn:hover{
+	background :#696969;
+}

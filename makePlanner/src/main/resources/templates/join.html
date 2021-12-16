@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/> 
+    <meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <link rel="stylesheet" type="text/css" href="css/joinStyle.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="js/jquery/jquery.min.js"></script>
+    <title>Hello! Join Us!!</title>
+</head>
+<body>
+    <div id="map" class="loadingImg">
+    	<img src="img/loading2.gif">
+    </div>
+    <div class="wrap">
+        <div class="form-wrap">
+            <div class="join_top">
+                <h2 class="join_title">
+                    Hey, <br>
+                    Nice to meet you :) <br>
+                    Please join Us!!
+                </h2>
+            </div>
+            <form th:method="post" id="register" class="input-group">
+                <input type="text" class="input-field" name="name" placeholder="Your Name please :)">
+                <input type="text" class="input-field" name="userId" placeholder="Make User ID" style="width:75%">
+                <button type="button" class="check_btn idCheck">ID check</button>
+                <input type="text" class="input_alert id_check" style="display:none;" value="">
+                <input type="password" id="firstPwd" class="input-field" name="userPwd" placeholder="Make User PWD">
+                <input type="password" id="checkPwd" class="input-field" placeholder="Check User PWD">
+                <input type="text" class="input_alert pwd_chk" style="display:none;" value="** Dosen't match passoword :(">
+                <input type="email" class="input-field" name="email" placeholder="Enter Your Email">
+                <input type="tel" class="input-field" name="phone" placeholder="Enter your Phone number">
+                <input type="text" class="input-field" name="address"  placeholder="Enter your Address">
+                <input type="checkbox" class="checkbox"><span>I agreed<a href="#"> Terms</a> and <a href="#">conditions</a></span>
+                <button class="submit_btn" type="button">REGISTER</button>
+            </form>
+        </div>
+    </div>
+    <script>
+    	// 템플릿
+        // https://bizmark.co.kr/wordpress/free-template/%EB%AC%B4%EB%A3%8C-%ED%85%9C%ED%94%8C%EB%A6%BF-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%ED%8F%BC%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85-%ED%8F%BC/
+        // 암호화
+        // https://hyune-c.tistory.com/entry/%ED%9A%8C%EC%9B%90-%EA%B0%80%EC%9E%85%EC%9D%84-%ED%95%B4%EB%B3%B4%EC%9E%90-%EC%95%94%ED%98%B8%ED%99%94%EC%97%90%EC%84%9C-spring-security-%EA%B9%8C%EC%A7%80
+        
+        $("#checkPwd").keyup(function(){
+        	var firstPwd = $("#firstPwd").val();
+        	var checkPwd =$("#checkPwd").val();
+        	
+        	if(firstPwd !== checkPwd){
+        		$(".pwd_chk").attr("style","display:block");
+        	} else{
+        		$(".pwd_chk").attr("style","display:none");
+        	}
+        });
+        
+       $(".idCheck").on("click",function(){
+    		var userId = $("input[name=userId]").val();
+    		var token = $("meta[name='_csrf']").attr("content"); 
+        	var header = $("meta[name='_csrf_header']").attr("content");
+    		
+    		if(userId != ''){
+	    		$.ajax({
+	    			beforeSend: function(xhr){ 
+	        			xhr.setRequestHeader(header,token); 
+	        		},
+	        		type : "POST",
+	    			url : "/idCheck",
+	    			data : {
+	    				userId : userId
+	    			},
+	    			success : function(response) {
+	    				if(response.result == true){
+	    					$(".id_check").attr("style", "display:block;");
+	    					$(".id_check").val(response.msg);
+	    				} else{
+	    					$(".id_check").attr("style", "display:block;");
+	    					$(".id_check").val(response.msg);
+	    				}
+	    			},
+	    			error : function(error){
+	    				alert("문제가 발생했습니다. 관리자에게 문의하세요");
+	    			}
+	        	});
+    		} else {
+    			$(".id_check").attr("style","display:block");
+    			$(".id_check").val("Make ID please :(");
+    		}
+    	});
+        
+
+    	$(".submit_btn").on("click",function(){
+    		var form = $("#register").serialize();
+        	var token = $("meta[name='_csrf']").attr("content"); 
+        	var header = $("meta[name='_csrf_header']").attr("content");
+
+        	$.ajax({
+        		beforeSend: function(xhr){ 
+        			xhr.setRequestHeader(header,token); 
+        		},
+        		type : "POST",
+    			url : "/joinProc",
+    			data : form,
+    			success : function(response) {
+    				Swal.fire({
+    					  title: response.msg,
+   					}).then((result) => {
+   						$(".loadingImg").attr("style","display:block;");
+   						
+   						setTimeout(function() {
+  	  						location.replace("/");
+   						}, 600);
+    				});
+    			},
+    			error : function(error){
+    				alert("문제가 발생했습니다. 관리자에게 문의하세요");
+    			}
+        	});
+    	});
+    </script>
+</body>
+</html>

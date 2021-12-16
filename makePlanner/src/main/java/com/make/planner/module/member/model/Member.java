@@ -34,6 +34,8 @@ public class Member implements UserDetails{
 	
 	private String status;
 	
+	private String authority;
+	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub

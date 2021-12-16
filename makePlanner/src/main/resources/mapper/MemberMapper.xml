@@ -12,16 +12,19 @@
         <result property="phone" column="PHONE"/>
         <result property="address" column="ADDRESS"/>
         <result property="status" column="STATUS"/>
-        <result property="status" column="STATUS"/>
+        <result property="authority" column="Authority"/>
 	</resultMap>
 	
-	<select id="findAllMember" resultType="com.make.planner.module.member.model.Member">
-		SELECT * 
+	<select id="findId" resultType="com.make.planner.module.member.model.Member">
+		SELECT 
+			USER_ID
 		FROM MEMBER
+		WHERE 
+			USER_ID = #{userId}
 	</select>
 	
 	<select id="findMemberById" resultType="com.make.planner.module.member.model.Member">
-		SELECT * 
+		SELECT *
 		FROM 
 			MEMBER
 		WHERE 

@@ -20,7 +20,7 @@ repositories {
 }
 
 // https://logging.apache.org/log4j/2.x/security.html
-ext['log4j2.version'] = '2.15.0'
+ext['log4j2.version'] = '2.16.0'
 
 // https://tomcat.apache.org/security-9.html
 ext['tomcat.version'] = '9.0.56' 
