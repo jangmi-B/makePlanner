@@ -67,20 +67,23 @@ nav, footer{
 }
 
 /*main*/
+.footer.py-3{
+	margin-top:20px;
+}
 .mainContainer{
     width: 100vw;
-    height: 85vh;
+    height: 1080px;
 }
 .mainRow{
-    height: 49%;
-    width: 99%;
+    height: 50%;
+    width: 100%;
     margin: 15px 15px 5px 5px;
 }
 .mainRow > div {
     font-family: 'GowunBatang-Regular';
     border-radius: 10px;
     background-color: rgb(248, 248, 248);
-    display: inline-block;
+    display: inline-grid;
     width: 49%;
     height: 100%;
     margin: 5px;
@@ -97,17 +100,45 @@ nav, footer{
 }
 
 .main_btn{
+	display:inline;
 	float: right;
 	border: none;
 	border-radius: 5px;
 	background-color: transparent;
 	color: black;
 	width: 110px;
+	font-size:14px;
 }
 
 .main_link{
 	color: black;
 }
-..main_link:hover{
+.main_link:hover{
 	text-decoration:none;
 }
+
+/* Diary */
+.pagingDiv{
+	text-align:center;
+}
+
+.pagination{
+	list-style:none;
+	text-align:center;
+}
+
+.pagination li{
+	display:inline-block;
+}
+
+.pagination a{
+	color:#007bff;
+	font-size:18px;
+	padding : 5px 12px;
+	line-height:1.5px;
+}
+
+
+
+
+

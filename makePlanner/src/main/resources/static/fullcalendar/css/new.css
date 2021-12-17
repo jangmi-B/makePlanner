@@ -1,4 +1,8 @@
-.fc-day:hover{background:#FFF0F0;cursor: pointer;}
+/* .fc-day:hover{background:#FFF0F0;cursor: pointer;}
 th{background:#FFD700;}
 .fc-sun .fc .fc-daygrid-day-number{color:#e31b23}
-.fc-sat a{color:#007dc3}
+.fc-sat a{color:#007dc3} */
+
+.fc-header-toolbar.fc-toolbar{
+	margin-bottom:0px;
+}

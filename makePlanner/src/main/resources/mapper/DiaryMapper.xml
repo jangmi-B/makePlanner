@@ -12,17 +12,32 @@
         <result property="status" column="STATUS"/>
 	</resultMap>
 	
+	<select id="selectTotalCnt" resultType="_int">
+		SELECT 
+			COUNT(*)
+		FROM
+			DIARY
+	</select>
+	
 	<select id="selectDiaryList" resultMap="DiaryResultMap">
 		/* DiaryMapper.selectDiaryList*/
-		SELECT 
-			D.DIARY_IDX
-			, DATE_FORMAT(D.WRITE_DT, '%Y년 %m월 %d일') AS WRITE_DT
-			, D.UPDATE_DT 
-			, D.TITLE 
-			, D.CONTENTS 
-			, D.WRITER
-			, D.STATUS 
-		FROM DIARY D
-		WHERE D.WRITER = #{userId}
+		<![CDATA[
+			SELECT 
+				D.DIARY_IDX
+				, DATE_FORMAT(D.WRITE_DT, '%Y년 %m월 %d일') AS WRITE_DT
+				, D.UPDATE_DT 
+				, D.TITLE 
+				, D.CONTENTS 
+				, D.WRITER
+				, D.STATUS 
+			FROM 
+				DIARY D
+			WHERE 
+				D.WRITER = #{writer}
+			ORDER BY 
+				WRITE_DT DESC
+            LIMIT 
+            	#{pagenum}, #{contentnum}
+		]]>
 	</select>
 </mapper>

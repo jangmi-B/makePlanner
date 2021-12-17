@@ -11,6 +11,8 @@ import com.make.planner.module.diary.model.Diary;
 @Repository
 public interface DiaryMapper {
 	
-	List<Diary> selectDiaryList(int userIdx);
+	int selectTotalCnt();
+	
+	List<Diary> selectDiaryList(Diary diary);
 
 }

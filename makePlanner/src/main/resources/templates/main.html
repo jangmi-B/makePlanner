@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,6 +15,14 @@
     <script src="bootstrap/js/bootstrap.min.js.map"></script>
     
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    
+    <!-- <link href="fullcalendar/css/main.css" rel="stylesheet" /> -->
+    <link href='fullcalendar/main.css' rel='stylesheet' />
+    <link href='fullcalendar/css/new.css' rel='stylesheet'/>
+    <link rel="stylesheet" href="fullcalendar/vendor/css/bootstrap.min.css">
+    <link rel="stylesheet" href='fullcalendar/vendor/css/bootstrap-datetimepicker.min.css' />
+    <script src='fullcalendar/main.js'></script>
+    <script src="fullcalendar/vendor/js/jquery.min.js"></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,7 +44,7 @@
     <div class="mainContainer">
         <div class="mainRow">
             <div class="mainDiv">
-                <span class="divTitle">일기장(기본게시판)</span><button class="main_btn"> + View detail</button>
+                <span class="divTitle">일기장(기본게시판)<button class="main_btn"> + View detail</button></span>
                 <table class="table" style="margin-top: 20px;">
                     <thead>
                       <tr>
@@ -50,11 +58,29 @@
                         <td><a href="#" class="main_link" th:text="${diary.title}"></a></td>
                       </tr>
                     </tbody>
-                  </table>
+				</table>
+				
+	            <nav class="pagingDiv" th:with="start=${paging.startPage}, end=${paging.endPage}" >
+	                <ul class="pagination">
+	                    <li th:if="${paging.prev}">
+	                        <a th:href="@{/note/list(num=${page.startPageNum-1})}" th:text="'<'"></a>
+	                        <!-- <a th:href="@{/note/list(num=${page.startPageNum-1})}" th:text="'<'"></a> -->
+	                    </li>
+	                    <li th:each="page: ${#numbers.sequence(start, end)}">
+	                        <a th:text="${page}" th:href="@{/note/list(num=${page})}"></a>
+	                        <!-- <a th:text="${page}" th:href="@{/note/list(num=${page})}"></a> -->
+	                    </li>
+	                    <li th:if="${paging.next}">
+	                        <a th:href="@{/note/list(num=${page.endPageNum+1})}" th:text="'>'"></a>
+	                        <!-- <a th:href="@{/note/list(num=${page.endPageNum+1})}" th:text="'>'"></a> -->
+	                    </li>
+	                </ul>
+	            </nav>
+		        
             </div>
             <div class="mainDiv">
-                <span class="divTitle">일정(fullcalendar 사용해보기)</span>
-                <div id='calendar' style="width:1180px; margin-left:auto; margin-right:auto;"></div>
+                <!-- <span class="divTitle">일정(fullcalendar 사용해보기)</span> -->
+                <div id='calendar' style="width:85%; height:75%; margin-left:auto; margin-right:auto;"></div>
             </div>
         </div>
         <div class="mainRow">
@@ -98,6 +124,31 @@
 				}
 			})
 		}
+		
+		document.addEventListener('DOMContentLoaded', function() {
+	        var calendarEl = document.getElementById('calendar');
+	        var calendar = new FullCalendar.Calendar(calendarEl, {
+				initialView: 'dayGridMonth',
+				header: {
+				   left: 'prev,next today',
+				   center: 'title',
+				   right: 'dayGridMonth,timeGridWeek,timeGridDay'
+				 },
+				 editable: true,
+				 droppable: true, // this allows things to be dropped onto the calendar
+				 drop: function(info) {
+				    // is the "remove after drop" checkbox checked?
+				    if (checkbox.checked) {
+				      // if so, remove the element from the "Draggable Events" list
+				      info.draggedEl.parentNode.removeChild(info.draggedEl);
+				    }
+				 },
+				 dateClick: function() {
+					 $("#contextMenu").removeClass("fade");
+				 }
+	        });
+	        calendar.render();
+	      });
 	</script>
 </body>
 </html>

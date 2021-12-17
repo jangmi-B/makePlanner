@@ -1,13 +1,19 @@
 package com.make.planner.module.diary.model;
 
+import com.make.planner.module.common.paging.Paging;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Diary {
+@EqualsAndHashCode(callSuper = false)
+@ToString(callSuper = true)
+public class Diary extends Paging{
 	private int diaryIdx;
 	
 	private String writeDt;

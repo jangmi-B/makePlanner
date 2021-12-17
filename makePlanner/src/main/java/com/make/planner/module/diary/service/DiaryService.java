@@ -14,7 +14,11 @@ public class DiaryService {
 	@Autowired
 	DiaryMapper diaryMapper;
 	
-	public List<Diary> selectDiaryList(int userIdx){
-		return diaryMapper.selectDiaryList(userIdx);
+	public int selectTotalCnt() {
+		return diaryMapper.selectTotalCnt();
+	}
+	
+	public List<Diary> selectDiaryList(Diary diary){
+		return diaryMapper.selectDiaryList(diary);
 	};
 }
